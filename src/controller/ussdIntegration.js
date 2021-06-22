@@ -1,5 +1,7 @@
 import axios from 'axios';
-
+import { username, password, gatewayURL, callbackURL, shortcode } from '../config/config';
+import { sendToGateway } from '../util/sendData';
+import { logger } from '../config/loggerConfig';
 
 export default class USSDController {
     /**
@@ -12,30 +14,17 @@ export default class USSDController {
          * @memberof USSDController
     */
      static async clientIntegration(req, res) {
-        try{
-            const baseUrl = ""; // host i.e client's IP and Port
-            const appId = ""; // client's appId
-            const { msisdn, session, ussd, msg, msgtype, network } = req.body;
-            const meta = {
-                    "linkid": "",
-                    "codescheme": ""
-            }
-
-                let data = { msisdn, session, ussd, msg, msgtype, network, meta };
-                const url  =  `${baseUrl}/router/digitalpulse/v1.0/ussd/reply/${appId}`;
-                const headers = { 
-                    'Content-Type': 'application/json'
-                  };
-              
-              const response = await axios.post(url, data, {headers: headers});
-              // check response
-              if(response){
-                  res.send(response);
-              }  
+        try {
+        const response = await axios.get(callbackURL);
+        logger.debug('BRJ response', response);
+        if(response){
+            const { msisdn, ussd, msg, msgtype } = response;
+            sendToGateway(gatewayURL, username, password, shortcode, msisdn, msg, msgtype, ussd, res);
+        }
 
       } catch(e){
-       
+        logger.error('Error from integration', e)
       }
-   };
+   }
 
-}
+};

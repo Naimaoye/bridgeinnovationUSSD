@@ -16,8 +16,10 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/digitalpulse_software/bridgeinnovationussd#readme",
   "dependencies": {
+    "@hapi/joi": "^15.0.3",
     "axios": "^0.21.1",
     "express": "^4.17.1",
-    "@hapi/joi": "^15.0.3"
+    "uuidv4": "^6.2.10",
+    "winston": "^3.3.3"
   }
 }

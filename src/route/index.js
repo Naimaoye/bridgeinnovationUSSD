@@ -1,10 +1,9 @@
 import express from 'express';
-import ussdController from '../controller/ussdIntegration'
-import Validation from '../util/validation';
+import ussdController from '../controller/ussdIntegration';
 
 const ussdRoute = express.Router();
 
-userRoute.post('/ussd', ussdController.clientIntegration);
+ussdRoute.get(`reply/${appId}`, ussdController.clientIntegration);
 
   
 
