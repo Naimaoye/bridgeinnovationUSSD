@@ -1,0 +1,23 @@
+{
+  "name": "bridgeinnovationussd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js --exec babel-node",
+    "build": "babel -d ./build ./src -s",
+    "start": "npm install && npm run build && node ./build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://naimah_d@bitbucket.org/digitalpulse_software/bridgeinnovationussd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/digitalpulse_software/bridgeinnovationussd#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "@hapi/joi": "^15.0.3"
+  }
+}
